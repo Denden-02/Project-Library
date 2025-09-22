@@ -5,17 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
     <title>Library Project</title>
-    <script src="code.js"></script>
+    <script defer src="code.js"></script>
 </head>
 <body>
-    <table>
-        <tr>
-            <th>Book</th>
-            <th>Author</th>
-            <th>Pages</th>
-            <th>Read Status</th>
-        </tr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Read Status</th>
+            </tr>
+        </thead>
     </table>
-    
+    <button type="button" value="new-book" id="new-book">New Book</button> 
+    <dialog class="dialog">
+        <form method="dialog">
+            <h3>All About Books</h3>
+            <label for="book">Book name: </label>
+            <input type="text" id="book" name="book" placeholder="name of the book" size="21" required ><br><br>
+            <label for="author"> Author name: </label>
+            <input type="text" id="author" name="author" placeholder="who's the author of this book?" size="20" required><br><br>
+            <label for="pages">No. of pages: </label>
+            <input type="number" min="5" max="1500"  id="pages" name="pages" placeholder="How many pages does this book have?" required><br><br>
+            <fieldset>
+                <legend>Have you read this book? </legend>
+                <label for="status_yes"><input type="radio" id="status_yes" name="status" value="yes" required>Yes</label><br>
+                <label for="status_no"><input type="radio" id="status_no" name="status" value="no" required>No</label><br>
+            </fieldset><br> 
+
+            <!-- alisin mo ung type="submit" kung nageerror ung pagpasa ng form -->
+            <button type="submit" id="cancel">Cancel</button>
+            <button type="submit" id="ok">OK</button>
+        </form>
+    </dialog>
 </body>
 </html>
