@@ -1,32 +1,32 @@
-const library = new Array();
+let library = new Array();
+let data;
 
-function Book(book,author,pages,status) {
-    this.book = book;
-    this.author = author;
-    this.pages = pages;
-    this.status = status;
+function Book(array) {
+    this.book = array[0];
+    this.author = array[1];
+    this.pages = array[2];
+    this.status = array[3];
     this.bookId = crypto.randomUUID();
 }
 
-function addBookToLibrary() {
-    let book =  prompt("What's the name of the book? ");
-    let author = prompt("Who's the author of this book? ");
-    let pages = prompt("How many pages does this book have? ");
-    let status = prompt("Have your already read this book or not? ")
+// function addBookToLibrary() {
+//     let book =  prompt("What's the name of the book? ");
+//     let author = prompt("Who's the author of this book? ");
+//     let pages = prompt("How many pages does this book have? ");
+//     let status = prompt("Have your already read this book or not? ")
 
-    let newBook = new Book(book,author,pages,status);
-    library.push(newBook);
-}
+//     let newBook = new Book(book,author,pages,status);
+//     library.push(newBook);
+// }
 
 function addBookFormInfoToLibrary() {
     let book = document.body.querySelector("input#book").value;
     let author = document.body.querySelector("input#author").value;
     let pages = document.body.querySelector("input#pages").value;
-    let status = document.body.querySelector("input#status");
-
+    let status = document.body.querySelector("input[type='radio']").value;
+    console.log(status);
     let newBook = new Book(book,author,pages,status);
     library.push(newBook);
-
     library.forEach(addBookToTable);
 }
 
@@ -59,15 +59,36 @@ let dialogBox = document.body.querySelector(".dialog"); // manage eventlistener 
 
 let dialogOk = document.body.querySelector("button#ok");
 let dialogCancel = document.body.querySelector("button#cancel");
-
+let form = document.body.querySelector("form");
 // RUNTIME
 // addBookToLibrary();
 
 newBookBtn.addEventListener("click", () => dialogBox.showModal());
 dialogCancel.addEventListener("click", () => dialogBox.close());
 
-dialogOk.addEventListener("click", addBookFormInfoToLibrary)
+// dialogOk.addEventListener("click", addBookFormInfoToLibrary)
 
+function extractFormData(evt) {
+    data = new FormData(evt.currentTarget);
+    // console.log(evt.currentTarget);
+    // console.log(data);
+    let array = [];
+    
+    for (let input of data.entries()) {
+        // input would be an array of entries "[inputkey, inputvalue] defined by an underlying index on each pair thanks to the .entries() iterator"
+        array.push(input[1]); //meaning the value of the name [name, value]
+    }
+
+    let newBook = new Book(array);
+    library.push(newBook);
+    library.forEach(addBookToTable);
+}
+
+form.addEventListener("submit", extractFormData);
+//TO GIT ADD; make sure function is working
+
+
+ 
 
 
 

@@ -1,4 +1,5 @@
 Project Library:
+FROM THE INSTRUCTION PAGE:
 -GitHub repository on Project: Library
 -Make 1 array variable for book storage & 1 Book constructor to make the book data
 -1 function take arguments of the book info
@@ -42,4 +43,18 @@ Form data looks like this on httpbin.org:
   - after clicking 'OK', run an event handler that will extract all book form data into the array library to post into the table
 
   - after extracting all inputted data > create a newBook Object that will be added to the Array library
+
+ORGANIZED TRAIN OF THOUGHTS:
+<!-- - Fix radio buttons NOT adding the selected option properly to the table -->
+
+- Assign the necessary event handlers to the page (clicks, submit)
+- Extract form data after submitting the form dialog box
+  - make function that extracts the form data
+  - using constructor: new FormData()
+  - punch each key:value pair into one bookinfo
+  - add the crypto.randomUUID() as a unique book ID
+- put book info into an array (library)
+- cycle into the library and get the recent book addition 
+- then put the recent added book into the table
+
   
