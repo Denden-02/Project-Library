@@ -82,10 +82,17 @@ function extractFormData(evt) {
     let newBook = new Book(array);
     library.push(newBook);
     library.forEach(addBookToTable);
+    form.reset();
 }
 
 form.addEventListener("submit", extractFormData);
-//TO GIT ADD; make sure function is working
+
+//FIXME: submitting behavior after clicking `cancel`
+//FIXME: values not resetting after clicking `new book`
+
+
+
+
 
 
  
