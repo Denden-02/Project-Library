@@ -56,5 +56,9 @@ ORGANIZED TRAIN OF THOUGHTS:
 - put book info into an array (library)
 - cycle into the library and get the recent book addition 
 - then put the recent added book into the table
+- Add a button to remove a book row and data 
 
-  
+//fixed: submitting behavior after clicking `cancel`
+//fixed: values not resetting after clicking `new book`
+
+

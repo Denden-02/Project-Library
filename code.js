@@ -19,21 +19,21 @@ function Book(array) {
 //     library.push(newBook);
 // }
 
-function addBookFormInfoToLibrary() {
-    let book = document.body.querySelector("input#book").value;
-    let author = document.body.querySelector("input#author").value;
-    let pages = document.body.querySelector("input#pages").value;
-    let status = document.body.querySelector("input[type='radio']").value;
-    console.log(status);
-    let newBook = new Book(book,author,pages,status);
-    library.push(newBook);
-    library.forEach(addBookToTable);
-}
+// function addBookFormInfoToLibrary() {
+//     let book = document.body.querySelector("input#book").value;
+//     let author = document.body.querySelector("input#author").value;
+//     let pages = document.body.querySelector("input#pages").value;
+//     let status = document.body.querySelector("input[type='radio']").value;
+//     console.log(status);
+//     let newBook = new Book(book,author,pages,status);
+//     library.push(newBook);
+//     library.forEach(addBookToTable);
+// }
 
 function addBookToTable(objItem, index) {
     if (index == library.length-1) {
         let tableRow = document.createElement("tr");
-        tableRow.setAttribute("data-bookId", objItem.bookId)
+        tableRow.setAttribute("data-bookid", objItem.bookId);
         let tdBook = document.createElement("td");
         tdBook.innerText = objItem.book;
         let tdAuthor = document.createElement("td");
@@ -42,15 +42,38 @@ function addBookToTable(objItem, index) {
         tdPages.innerText = objItem.pages;
         let tdStatus = document.createElement("td");
         tdStatus.innerText = objItem.status;
+        let tdRemoveBtn = document.createElement("td");
+        let removeBtn = document.createElement("button");
+        removeBtn.innerText = "del";
+        removeBtn.setAttribute("data-bookid", objItem.bookId);
+        removeBtn.addEventListener("click", removeBook);
 
+        tdRemoveBtn.appendChild(removeBtn);
+         
         tableRow.appendChild(tdBook);
         tableRow.appendChild(tdAuthor);
         tableRow.appendChild(tdPages);
         tableRow.appendChild(tdStatus);
+        tableRow.appendChild(tdRemoveBtn);
+        
 
         let table = document.body.querySelector(".table");
         table.appendChild(tableRow);
     }
+}
+
+// table>td>button>click event handler to remove tableRow (function after DOM changes)
+function removeBook(evt) {
+    let bookId2Remove = evt.currentTarget.dataset.bookid;
+
+    let tableRow2Remove = document.body.querySelector(`tr[data-bookid="${bookId2Remove}"]`);
+    tableRow2Remove.remove();
+
+    let libraryIndex2Remove = library.findIndex((item) => item.bookId == bookId2Remove);
+    libraryIndex2Remove >= 0 ? library.splice(libraryIndex2Remove,1) : false;
+
+    // CHECK DOCUMENTATION ABOUT DATA ATTRIBUTE SELECTION USING document.querySelector(`tr[data-bookid=${bookId2Remove}]`);
+
 }
 
 // Assign AddEventListeners to necessary elements;
@@ -87,8 +110,7 @@ function extractFormData(evt) {
 
 form.addEventListener("submit", extractFormData);
 
-//FIXME: submitting behavior after clicking `cancel`
-//FIXME: values not resetting after clicking `new book`
+
 
 
 
