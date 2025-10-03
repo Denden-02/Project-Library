@@ -50,6 +50,7 @@ function addBookToTable(objItem, index) {
         let tdStatus = document.createElement("td");  
         let statusBtn = document.createElement("button");
         statusBtn.innerText = objItem.status;
+        statusBtn.setAttribute("data-bookid", objItem.bookId);
         statusBtn.addEventListener("click", changeStatus);
 
         let tdRemoveBtn = document.createElement("td");
@@ -74,7 +75,13 @@ function addBookToTable(objItem, index) {
 }
 
 function changeStatus(evt) {
-    evt.currentTarget.innerText == "Yes" ? evt.currentTarget.innerText = "No" : evt.currentTarget.innerText = "Yes";
+    let bookId2ChangeStatus = evt.currentTarget.dataset.bookid;
+    let bookIndex = library.findIndex(item => bookId2ChangeStatus == item.bookId);
+    if (bookIndex >= 0) {
+        library[bookIndex].status == "Yes" ? library[bookIndex].status = "No" : library[bookIndex].status = "Yes";
+    }
+    
+    evt.currentTarget.innerText = library[bookIndex].status; 
 }
 
 function removeBook(evt) {

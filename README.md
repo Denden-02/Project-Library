@@ -62,5 +62,6 @@ ORGANIZED TRAIN OF THOUGHTS:
 
 //fixed: submitting behavior after clicking `cancel`
 //fixed: values not resetting after clicking `new book`
+//FIXME: also change the read status on the library data (not just on the page)
 
 
