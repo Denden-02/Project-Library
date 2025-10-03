@@ -57,6 +57,8 @@ ORGANIZED TRAIN OF THOUGHTS:
 - cycle into the library and get the recent book addition 
 - then put the recent added book into the table
 - Add a button to remove a book row and data 
+- Add toggle button to change read status (yes/no)
+
 
 //fixed: submitting behavior after clicking `cancel`
 //fixed: values not resetting after clicking `new book`
